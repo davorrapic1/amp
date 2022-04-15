@@ -13,10 +13,9 @@ import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsDate, IsString, IsOptional, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
-import { Link } from "../../link/base/Link";
-import { Option } from "../../option/base/Option";
+import { User } from "../../user/base/User";
 @ObjectType()
-class User {
+class Option {
   @ApiProperty({
     required: true,
   })
@@ -24,28 +23,6 @@ class User {
   @Type(() => Date)
   @Field(() => Date)
   createdAt!: Date;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  email!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  firstName!: string | null;
 
   @ApiProperty({
     required: true,
@@ -64,35 +41,7 @@ class User {
   @Field(() => String, {
     nullable: true,
   })
-  lastName!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: () => [Link],
-  })
-  @ValidateNested()
-  @Type(() => Link)
-  @IsOptional()
-  links?: Array<Link>;
-
-  @ApiProperty({
-    required: false,
-    type: () => [Option],
-  })
-  @ValidateNested()
-  @Type(() => Option)
-  @IsOptional()
-  options?: Array<Option>;
-
-  @ApiProperty({
-    required: true,
-    type: [String],
-  })
-  @IsString({
-    each: true,
-  })
-  @Field(() => [String])
-  roles!: Array<string>;
+  mode!: string | null;
 
   @ApiProperty({
     required: true,
@@ -103,11 +52,12 @@ class User {
   updatedAt!: Date;
 
   @ApiProperty({
-    required: true,
-    type: String,
+    required: false,
+    type: () => User,
   })
-  @IsString()
-  @Field(() => String)
-  username!: string;
+  @ValidateNested()
+  @Type(() => User)
+  @IsOptional()
+  user?: User | null;
 }
-export { User };
+export { Option };

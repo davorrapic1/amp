@@ -1,4 +1,5 @@
 import { Link } from "../link/Link";
+import { Option } from "../option/Option";
 
 export type User = {
   createdAt: Date;
@@ -7,6 +8,7 @@ export type User = {
   id: string;
   lastName: string | null;
   links?: Array<Link>;
+  options?: Array<Option>;
   roles: Array<string>;
   updatedAt: Date;
   username: string;

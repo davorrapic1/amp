@@ -13,6 +13,10 @@ import { LinkList } from "./link/LinkList";
 import { LinkCreate } from "./link/LinkCreate";
 import { LinkEdit } from "./link/LinkEdit";
 import { LinkShow } from "./link/LinkShow";
+import { OptionList } from "./option/OptionList";
+import { OptionCreate } from "./option/OptionCreate";
+import { OptionEdit } from "./option/OptionEdit";
+import { OptionShow } from "./option/OptionShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -52,6 +56,13 @@ const App = (): React.ReactElement => {
           edit={LinkEdit}
           create={LinkCreate}
           show={LinkShow}
+        />
+        <Resource
+          name="Option"
+          list={OptionList}
+          edit={OptionEdit}
+          create={OptionCreate}
+          show={OptionShow}
         />
       </Admin>
     </div>
