@@ -11,6 +11,7 @@ import {
 } from "react-admin";
 
 import { LinkTitle } from "../link/LinkTitle";
+import { OptionTitle } from "../option/OptionTitle";
 import { ROLES_OPTIONS } from "../user/RolesOptions";
 
 export const UserEdit = (props: EditProps): React.ReactElement => {
@@ -27,6 +28,14 @@ export const UserEdit = (props: EditProps): React.ReactElement => {
           format={(value: any) => value && value.map((v: any) => v.id)}
         >
           <SelectArrayInput optionText={LinkTitle} />
+        </ReferenceArrayInput>
+        <ReferenceArrayInput
+          source="options"
+          reference="Option"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
+        >
+          <SelectArrayInput optionText={OptionTitle} />
         </ReferenceArrayInput>
         <PasswordInput label="Password" source="password" />
         <SelectArrayInput

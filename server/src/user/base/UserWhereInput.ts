@@ -16,6 +16,7 @@ import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { StringFilter } from "../../util/StringFilter";
 import { LinkListRelationFilter } from "../../link/base/LinkListRelationFilter";
+import { OptionListRelationFilter } from "../../option/base/OptionListRelationFilter";
 @InputType()
 class UserWhereInput {
   @ApiProperty({
@@ -73,6 +74,18 @@ class UserWhereInput {
     nullable: true,
   })
   links?: LinkListRelationFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => OptionListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => OptionListRelationFilter)
+  @IsOptional()
+  @Field(() => OptionListRelationFilter, {
+    nullable: true,
+  })
+  options?: OptionListRelationFilter;
 
   @ApiProperty({
     required: false,
